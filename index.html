@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Campus Portal - Anmeldung</title>
+<title>Chronos Universität - Campus App</title>
 
 <style>
 :root {
-    /* Typische, seriöse Hochschul-Farben (Deep Blue & Teal Accent) */
-    --primary-color: #0A2540;
-    --primary-light: #1e3d59;
-    --accent-color: #00D4B6;
-    --bg-color: #f4f6f9;
-    --card-bg: #ffffff;
-    --text-main: #2D3748;
-    --text-muted: #718096;
+    --primary: #0C2340;       /* Klassisches Universitäts-Dunkelblau */
+    --secondary: #1D4ED8;     /* Modernes Digital-Blau */
+    --accent: #E2B13C;        /* Edles Universitäts-Gold */
+    --bg: #F8FAFC;            /* Sehr helles, sauberes Grau-Blau */
+    --card-bg: #FFFFFF;
+    --text-main: #1E293B;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
 }
 
 *{
@@ -25,7 +25,7 @@
 }
 
 body{
-    background: var(--bg-color);
+    background: var(--bg);
     color: var(--text-main);
     min-height: 100vh;
 }
@@ -40,11 +40,11 @@ body{
     flex-direction: column;
 }
 
-/* Realistischer Login-Bereich */
+/* --- LOGIN PAGE --- */
 .login{
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 30px 20px;
     background: #ffffff;
 }
 
@@ -54,51 +54,68 @@ body{
     text-align: center;
 }
 
-.logo-placeholder {
-    width: 80px;
-    height: 80px;
-    background: var(--primary-color);
-    border-radius: 16px;
-    margin: 0 auto 15px auto;
+/* Fiktives Logo-Icon (Akademisches Wappen-Stil) */
+.uni-logo {
+    width: 90px;
+    height: 90px;
+    background: var(--primary);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     color: white;
+    box-shadow: 0 10px 25px rgba(12, 35, 64, 0.2);
+    position: relative;
+}
+
+.uni-logo .shield {
     font-size: 32px;
+    line-height: 1;
+}
+
+.uni-logo .est {
+    font-size: 9px;
+    color: var(--accent);
     font-weight: bold;
-    box-shadow: 0 10px 20px rgba(10, 37, 64, 0.15);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
 }
 
 .brand-name {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 5px;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -0.5px;
 }
 
 .brand-sub {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--text-muted);
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
 }
 
 input{
     width: 100%;
     padding: 16px;
     border-radius: 12px;
-    border: 1.5px solid #E2E8F0;
-    margin-bottom: 15px;
+    border: 1.5px solid var(--border);
+    margin-bottom: 14px;
     font-size: 16px;
-    background: #F8FAFC;
+    background: #F1F5F9;
     transition: all 0.2s;
 }
 
 input:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--secondary);
     background: white;
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
 }
 
 button{
@@ -106,134 +123,201 @@ button{
     padding: 16px;
     border: none;
     border-radius: 12px;
-    background: var(--primary-color);
+    background: var(--primary);
     color: white;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
     margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(12, 35, 64, 0.15);
 }
 
 button:hover {
-    background: var(--primary-light);
+    background: #11315B;
 }
 
-/* Offizieller Header */
+/* --- HEADER --- */
 .header{
-    background: var(--primary-color);
+    background: var(--primary);
     color: white;
     padding: 25px 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    border-bottom: 4px solid var(--accent);
+}
+
+.header .uni-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+.header .mini-logo {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
 }
 
 .header .uni-name {
-    font-size: 12px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--accent-color);
-    margin-bottom: 4px;
+    color: #94A3B8;
+    font-weight: bold;
 }
 
 .header .welcome {
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 700;
 }
 
+/* --- MAIN CONTENT & MENU --- */
 .content{
     padding: 25px 20px;
-    max-width: 500px;
+    max-width: 480px;
     width: 100%;
     margin: 0 auto;
+    flex: 1; /* Schiebt den Footer nach unten */
 }
 
 .section-title {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--text-muted);
-    letter-spacing: 0.5px;
-    margin-bottom: 15px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    margin-top: 10px;
 }
 
-/* Dashboard Kacheln */
+.menu-grid {
+    margin-bottom: 25px;
+}
+
 .cardBtn{
     background: var(--card-bg);
-    padding: 18px 20px;
-    border-radius: 16px;
-    margin-bottom: 15px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    margin-bottom: 12px;
     font-size: 16px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,.04);
-    border: 1px solid #EDF2F7;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,.02), 0 2px 4px -1px rgba(0,0,0,.01);
+    border: 1px solid var(--border);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
 }
 
 .cardBtn:hover{
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0,0,0,.08);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.05);
+    border-color: #CBD5E1;
+}
+
+.cardBtn .left-side {
+    display: flex;
+    align-items: center;
 }
 
 .cardBtn .icon {
     margin-right: 15px;
     font-size: 20px;
+    width: 24px;
+    text-align: center;
 }
 
-/* Realistischerer Digitaler Ausweis */
+.cardBtn .arrow {
+    color: var(--text-muted);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* --- ADRESSE & FOOTER --- */
+.footer-info {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    border-top: 1px solid var(--border);
+    background: #F1F5F9;
+    margin-top: auto;
+}
+
+/* --- CARD PAGE (STUDICARD) --- */
+.back{
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--secondary);
+    cursor: pointer;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+}
+
 .membership{
     width: 100%;
     max-width: 350px;
-    background: linear-gradient(135deg, #0A2540 0%, #1e3d59 100%);
-    margin: 40px auto;
+    background: linear-gradient(135deg, #0C2340 0%, #1A365D 100%);
+    margin: 20px auto;
     border-radius: 20px;
     color: white;
     padding: 25px;
-    box-shadow: 0 15px 35px rgba(10, 37, 64, 0.25);
-    animation: show .4s ease-out;
+    box-shadow: 0 20px 40px rgba(12, 35, 64, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    animation: show .4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
 }
 
-/* Subtiles Sicherheitsmerkmal/Muster auf dem Ausweis */
-.membership:before{
+/* Authentischer Hologramm-Streifen angedeutet */
+.membership:after {
     content: "";
     position: absolute;
-    top: -50px;
-    right: -50px;
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(0,212,182,0.15) 0%, rgba(255,255,255,0) 70%);
-    border-radius: 50%;
+    top: 0;
+    left: 85%;
+    width: 15px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-15deg);
 }
 
 @keyframes show{
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(30px) scale(0.98); }
     to { opacity: 1; transform: none; }
 }
 
 .card-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    align-items: center;
+    border-bottom: 1.5px solid var(--accent);
     padding-bottom: 12px;
     margin-bottom: 20px;
 }
 
 .title{
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
     letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #F8FAFC;
 }
 
 .card-logo {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 800;
-    color: var(--accent-color);
-    text-transform: uppercase;
+    color: var(--accent);
+    letter-spacing: 0.5px;
 }
 
 .card-body {
@@ -247,48 +331,47 @@ button:hover {
 }
 
 .name{
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    letter-spacing: -0.5px;
 }
 
 .status {
-    font-size: 13px;
-    color: var(--accent-color);
-    margin-bottom: 15px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .number{
     font-size: 12px;
-    font-family: monospace;
-    color: rgba(255,255,255,0.7);
+    font-family: 'Courier New', Courier, monospace;
+    color: #94A3B8;
+}
+
+.validity {
+    font-size: 11px;
+    color: #CBD5E1;
+    margin-top: 2px;
 }
 
 .qr{
-    width: 75px;
-    height: 75px;
+    width: 80px;
+    height: 80px;
     background: white;
-    padding: 5px;
-    border-radius: 8px;
+    padding: 6px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
+    font-size: 10px;
     color: black;
     font-weight: bold;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.back{
-    padding: 20px;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--primary-color);
-    cursor: pointer;
-    max-width: 500px;
-    margin: 0 auto;
-    width: 100%;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 </style>
 </head>
@@ -298,12 +381,14 @@ button:hover {
 <!-- LOGIN PAGE -->
 <div id="login" class="page active login">
     <div class="login-container">
-        <!-- Platzhalter für das echte Hochschul-Logo -->
-        <div class="logo-placeholder">H</div>
-        <div class="brand-name">Hochschule X</div>
+        <div class="uni-logo">
+            <span class="shield">🏛️</span>
+            <span class="est">EST. 1974</span>
+        </div>
+        <div class="brand-name">Chronos Universität</div>
         <div class="brand-sub">Campus Portal</div>
 
-        <input placeholder="Nutzername oder E-Mail" type="text">
+        <input placeholder="Studierenden-ID / E-Mail" type="text">
         <input placeholder="Passwort" type="password">
         <button onclick="login()">Anmelden</button>
     </div>
@@ -312,24 +397,61 @@ button:hover {
 <!-- DASHBOARD PAGE -->
 <div id="dashboard" class="page">
     <div class="header">
-        <div class="uni-name">Hochschule X</div>
+        <div class="uni-meta">
+            <div class="mini-logo">🏛️</div>
+            <div class="uni-name">Chronos Universität</div>
+        </div>
         <div class="welcome">Hallo, Kilian 👋</div>
     </div>
 
     <div class="content">
-        <div class="section-title">Meine Services</div>
-        
-        <div class="cardBtn" onclick="openCard()">
-            <span class="icon">💳</span> StudiCard
+        <div class="section-title">Ausweise & Dokumente</div>
+        <div class="menu-grid">
+            <div class="cardBtn" onclick="openCard()">
+                <div class="left-side"><span class="icon">💳</span> StudiCard (Ausweis)</div>
+                <span class="arrow">→</span>
+            </div>
         </div>
 
-        <div class="cardBtn">
-            <span class="icon">📄</span> eCampus & Noten
+        <div class="section-title">Studienorganisation</div>
+        <div class="menu-grid">
+            <div class="cardBtn">
+                <div class="left-side"><span class="icon">📅</span> Stundenplan & Termine</div>
+                <span class="arrow">→</span>
+            </div>
+            <div class="cardBtn">
+                <div class="left-side"><span class="icon">📄</span> eCampus & Noten</div>
+                <span class="arrow">→</span>
+            </div>
+            <div class="cardBtn">
+                <div class="left-side"><span class="icon">📚</span> Bibliothekskonto</div>
+                <span class="arrow">→</span>
+            </div>
         </div>
 
-        <div class="cardBtn">
-            <span class="icon">⚙️</span> Einstellungen
+        <div class="section-title">Campus Life</div>
+        <div class="menu-grid">
+            <div class="cardBtn">
+                <div class="left-side"><span class="icon">🍴</span> Mensa-Speiseplan</div>
+                <span class="arrow">→</span>
+            </div>
         </div>
+
+        <div class="section-title">System</div>
+        <div class="menu-grid">
+            <div class="cardBtn">
+                <div class="left-side"><span class="icon">⚙️</span> Einstellungen</div>
+                <span class="arrow">→</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fiktive Anschrift im Footer -->
+    <div class="footer-info">
+        <strong>Chronos Universität Berlin</strong><br>
+        Campus Charlottenburg | Einsteinufer 12, 10587 Berlin<br>
+        Express-Support: it-service@chronos-uni.de<br>
+        <span style="font-size: 10px; color: #94A3B8; display:block; margin-top:10px;">© 2026 Chronos Universität – Alle Rechte vorbehalten</span>
     </div>
 </div>
 
@@ -342,7 +464,7 @@ button:hover {
     <div class="membership">
         <div class="card-header">
             <div class="title">Studentenausweis</div>
-            <div class="card-logo">HS X</div>
+            <div class="card-logo">CHRONOS UNI</div>
         </div>
         
         <div class="card-body">
@@ -350,6 +472,7 @@ button:hover {
                 <div class="name">Kilian Zinowsky</div>
                 <div class="status">Ordentlicher Student</div>
                 <div class="number">Matrikelnr: 84271938</div>
+                <div class="validity">Gültig: SoSe 2026</div>
             </div>
             <div class="qr">
                 QR CODE
@@ -362,16 +485,20 @@ button:hover {
 function login(){
     document.getElementById("login").classList.remove("active");
     document.getElementById("dashboard").classList.add("active");
+    // Scrollt automatisch nach oben, falls nötig
+    window.scrollTo(0, 0);
 }
 
 function openCard(){
     document.getElementById("dashboard").classList.remove("active");
     document.getElementById("cardPage").classList.add("active");
+    window.scrollTo(0, 0);
 }
 
 function backDashboard(){
     document.getElementById("cardPage").classList.remove("active");
     document.getElementById("dashboard").classList.add("active");
+    window.scrollTo(0, 0);
 }
 </script>
 
