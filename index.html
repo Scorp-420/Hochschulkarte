@@ -3,330 +3,377 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anmelden</title>
+<title>Campus Portal - Anmeldung</title>
 
 <style>
+:root {
+    /* Typische, seriöse Hochschul-Farben (Deep Blue & Teal Accent) */
+    --primary-color: #0A2540;
+    --primary-light: #1e3d59;
+    --accent-color: #00D4B6;
+    --bg-color: #f4f6f9;
+    --card-bg: #ffffff;
+    --text-main: #2D3748;
+    --text-muted: #718096;
+}
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body{
-background:#f2f2f7;
-height:100vh;
+    background: var(--bg-color);
+    color: var(--text-main);
+    min-height: 100vh;
 }
 
 .page{
-display:none;
-height:100vh;
+    display: none;
+    min-height: 100vh;
 }
 
 .active{
-display:flex;
-flex-direction:column;
+    display: flex;
+    flex-direction: column;
 }
 
+/* Realistischer Login-Bereich */
 .login{
-justify-content:center;
-align-items:center;
-padding:30px;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: #ffffff;
 }
 
-.logo{
-font-size:38px;
-font-weight:700;
-margin-bottom:50px;
+.login-container {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+}
+
+.logo-placeholder {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 16px;
+    margin: 0 auto 15px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    box-shadow: 0 10px 20px rgba(10, 37, 64, 0.15);
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.brand-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 input{
-width:100%;
-padding:16px;
-border-radius:12px;
-border:none;
-margin-bottom:15px;
-font-size:17px;
-background:white;
-box-shadow:0 3px 10px rgba(0,0,0,.08);
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1.5px solid #E2E8F0;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background: #F8FAFC;
+    transition: all 0.2s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: white;
 }
 
 button{
-width:100%;
-padding:16px;
-border:none;
-border-radius:14px;
-background:#007AFF;
-color:white;
-font-size:18px;
-font-weight:bold;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
 }
 
+button:hover {
+    background: var(--primary-light);
+}
+
+/* Offizieller Header */
 .header{
-background:white;
-padding:22px;
-font-size:25px;
-font-weight:bold;
-box-shadow:0 2px 10px rgba(0,0,0,.08);
+    background: var(--primary-color);
+    color: white;
+    padding: 25px 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+}
+
+.header .uni-name {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+}
+
+.header .welcome {
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .content{
-padding:20px;
+    padding: 25px 20px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
 }
 
+.section-title {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+
+/* Dashboard Kacheln */
 .cardBtn{
-
-background:white;
-padding:20px;
-border-radius:20px;
-margin-top:20px;
-font-size:20px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
-
+    background: var(--card-bg);
+    padding: 18px 20px;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,.04);
+    border: 1px solid #EDF2F7;
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .cardBtn:hover{
-transform:scale(1.02);
-cursor:pointer;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,.08);
 }
 
+.cardBtn .icon {
+    margin-right: 15px;
+    font-size: 20px;
+}
+
+/* Realistischerer Digitaler Ausweis */
 .membership{
-
-width:100%;
-max-width:360px;
-height:220px;
-
-background:linear-gradient(135deg,#0046d5,#00bfff);
-
-margin:auto;
-margin-top:60px;
-
-border-radius:25px;
-
-color:white;
-
-padding:25px;
-
-box-shadow:0 20px 50px rgba(0,0,0,.25);
-
-animation:show .5s;
-
-position:relative;
-
-overflow:hidden;
-
+    width: 100%;
+    max-width: 350px;
+    background: linear-gradient(135deg, #0A2540 0%, #1e3d59 100%);
+    margin: 40px auto;
+    border-radius: 20px;
+    color: white;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(10, 37, 64, 0.25);
+    animation: show .4s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Subtiles Sicherheitsmerkmal/Muster auf dem Ausweis */
 .membership:before{
-
-content:"";
-
-position:absolute;
-
-top:-80px;
-
-right:-80px;
-
-width:180px;
-
-height:180px;
-
-background:rgba(255,255,255,.15);
-
-border-radius:50%;
-
+    content: "";
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,212,182,0.15) 0%, rgba(255,255,255,0) 70%);
+    border-radius: 50%;
 }
 
 @keyframes show{
-
-from{
-opacity:0;
-transform:translateY(30px);
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: none; }
 }
 
-to{
-opacity:1;
-transform:none;
-}
-
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
 }
 
 .title{
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
 
-font-size:24px;
-font-weight:bold;
+.card-logo {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
 
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.user-info {
+    flex: 1;
 }
 
 .name{
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
 
-margin-top:60px;
-font-size:22px;
-
+.status {
+    font-size: 13px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
 }
 
 .number{
-
-margin-top:10px;
-letter-spacing:2px;
-
+    font-size: 12px;
+    font-family: monospace;
+    color: rgba(255,255,255,0.7);
 }
 
 .qr{
-
-margin-top:20px;
-
-width:80px;
-
-height:80px;
-
-background:white;
-
-color:black;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-font-size:10px;
-
-font-weight:bold;
-
+    width: 75px;
+    height: 75px;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .back{
-
-padding:20px;
-
-font-size:18px;
-
-color:#007AFF;
-
-cursor:pointer;
-
+    padding: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-color);
+    cursor: pointer;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
 }
-
 </style>
-
 </head>
 
 <body>
 
+<!-- LOGIN PAGE -->
 <div id="login" class="page active login">
+    <div class="login-container">
+        <!-- Platzhalter für das echte Hochschul-Logo -->
+        <div class="logo-placeholder">H</div>
+        <div class="brand-name">Hochschule X</div>
+        <div class="brand-sub">Campus Portal</div>
 
-<div class="logo">
-Kundenportal
+        <input placeholder="Nutzername oder E-Mail" type="text">
+        <input placeholder="Passwort" type="password">
+        <button onclick="login()">Anmelden</button>
+    </div>
 </div>
 
-<input placeholder="E-Mail">
-
-<input placeholder="Passwort" type="password">
-
-<button onclick="login()">
-Anmelden
-</button>
-
-</div>
-
+<!-- DASHBOARD PAGE -->
 <div id="dashboard" class="page">
+    <div class="header">
+        <div class="uni-name">Hochschule X</div>
+        <div class="welcome">Hallo, Kilian 👋</div>
+    </div>
 
-<div class="header">
-Willkommen 👋
+    <div class="content">
+        <div class="section-title">Meine Services</div>
+        
+        <div class="cardBtn" onclick="openCard()">
+            <span class="icon">💳</span> StudiCard
+        </div>
+
+        <div class="cardBtn">
+            <span class="icon">📄</span> eCampus & Noten
+        </div>
+
+        <div class="cardBtn">
+            <span class="icon">⚙️</span> Einstellungen
+        </div>
+    </div>
 </div>
 
-<div class="content">
-
-<div class="cardBtn" onclick="openCard()">
-
-💳 StudiCard
-
-</div>
-
-<div class="cardBtn">
-
-📄 eCampus
-
-</div>
-
-<div class="cardBtn">
-
-⚙️ Einstellungen
-
-</div>
-
-</div>
-
-</div>
-
+<!-- CARD PAGE -->
 <div id="cardPage" class="page">
+    <div class="back" onclick="backDashboard()">
+        ← Zurück zum Dashboard
+    </div>
 
-<div class="back" onclick="backDashboard()">
-
-← Zurück
-
-</div>
-
-<div class="membership">
-
-<div class="title">
-
-Digitale Studicard
-
-</div>
-
-<div class="name">
-
-Kilian zinowsky
-
-</div>
-
-<div class="number">
-
-Nr. 8427 1938
-
-</div>
-
-<div class="qr">
-
-QR CODE
-
-</div>
-
-</div>
-
+    <div class="membership">
+        <div class="card-header">
+            <div class="title">Studentenausweis</div>
+            <div class="card-logo">HS X</div>
+        </div>
+        
+        <div class="card-body">
+            <div class="user-info">
+                <div class="name">Kilian Zinowsky</div>
+                <div class="status">Ordentlicher Student</div>
+                <div class="number">Matrikelnr: 84271938</div>
+            </div>
+            <div class="qr">
+                QR CODE
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
-
 function login(){
-
-document.getElementById("login").classList.remove("active");
-
-document.getElementById("dashboard").classList.add("active");
-
+    document.getElementById("login").classList.remove("active");
+    document.getElementById("dashboard").classList.add("active");
 }
 
 function openCard(){
-
-document.getElementById("dashboard").classList.remove("active");
-
-document.getElementById("cardPage").classList.add("active");
-
+    document.getElementById("dashboard").classList.remove("active");
+    document.getElementById("cardPage").classList.add("active");
 }
 
 function backDashboard(){
-
-document.getElementById("cardPage").classList.remove("active");
-
-document.getElementById("dashboard").classList.add("active");
-
+    document.getElementById("cardPage").classList.remove("active");
+    document.getElementById("dashboard").classList.add("active");
 }
-
 </script>
 
 </body>
-
 </html>
