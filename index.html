@@ -358,20 +358,24 @@ button:hover {
     margin-top: 2px;
 }
 
-.qr{
+/* Geänderter Style für das Lichtbild statt QR-Code-Box */
+.photo-slot {
     width: 80px;
-    height: 80px;
-    background: white;
-    padding: 6px;
-    border-radius: 10px;
+    height: 100px; /* Hochformat-Verhältnis für Porträt */
+    background: #E2E8F0; /* Grauer Platzhalter für Ladestatus */
+    border-radius: 8px; /* Leicht abgerundete Ecken */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Weißer, semitransparenter Rand */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Etwas weicherer Schatten */
+    overflow: hidden; /* Beschneidet das Bild auf die Containergröße */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
-    color: black;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.photo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Verhindert Verzerrung und füllt den Slot */
 }
 </style>
 </head>
@@ -474,8 +478,10 @@ button:hover {
                 <div class="number">Matrikelnr: 84271938</div>
                 <div class="validity">Gültig: SoSe 2026</div>
             </div>
-            <div class="qr">
-                https://github.com/Scorp-420/Hochschulkarte/blob/main/IMG_1064.jpeg
+            <!-- Geändertes Element: photo-slot anstelle von qr -->
+            <div class="photo-slot">
+                <!-- Direktes Laden des Bildes aus deinem GitHub -->
+                <img src="https://raw.githubusercontent.com/Scorp-420/Hochschulkarte/main/IMG_1064.jpeg" alt="Lichtbild Kilian Zinowsky">
             </div>
         </div>
     </div>
