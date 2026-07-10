@@ -54,7 +54,6 @@ body{
     text-align: center;
 }
 
-/* Fiktives Logo-Icon (Akademisches Wappen-Stil) */
 .uni-logo {
     width: 90px;
     height: 90px;
@@ -183,7 +182,7 @@ button:hover {
     max-width: 480px;
     width: 100%;
     margin: 0 auto;
-    flex: 1; /* Schiebt den Footer nach unten */
+    flex: 1;
 }
 
 .section-title {
@@ -274,12 +273,20 @@ button:hover {
     padding: 25px;
     box-shadow: 0 20px 40px rgba(12, 35, 64, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: show .4s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
     overflow: hidden;
+    
+    /* Wichtig für die geschmeidige Vergrößerung */
+    max-height: 240px; 
+    transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: show .4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Authentischer Hologramm-Streifen angedeutet */
+/* Sobald die Seite aktiv ist, klappt die Karte nach unten auf */
+#cardPage.active .membership {
+    max-height: 500px; 
+}
+
 .membership:after {
     content: "";
     position: absolute;
@@ -358,15 +365,14 @@ button:hover {
     margin-top: 2px;
 }
 
-/* Geänderter Style für das Lichtbild statt QR-Code-Box */
 .photo-slot {
     width: 80px;
-    height: 100px; /* Hochformat-Verhältnis für Porträt */
-    background: #E2E8F0; /* Grauer Platzhalter für Ladestatus */
-    border-radius: 8px; /* Leicht abgerundete Ecken */
-    border: 2px solid rgba(255, 255, 255, 0.5); /* Weißer, semitransparenter Rand */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Etwas weicherer Schatten */
-    overflow: hidden; /* Beschneidet das Bild auf die Containergröße */
+    height: 100px;
+    background: #E2E8F0;
+    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -375,7 +381,54 @@ button:hover {
 .photo-slot img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Verhindert Verzerrung und füllt den Slot */
+    object-fit: cover;
+}
+
+/* --- NEU: QR CODE BEREICH --- */
+.qr-container {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Lässt den QR-Code sanft einblenden, während die Karte wächst */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+/* Wenn die Seite aktiv ist, wird der QR-Code sichtbar */
+#cardPage.active .qr-container {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.qr-box {
+    background: white;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 136px;
+    height: 136px;
+}
+
+.qr-box img {
+    width: 120px;
+    height: 120px;
+}
+
+.qr-text {
+    font-size: 10px;
+    color: #94A3B8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    font-weight: 600;
 }
 </style>
 </head>
@@ -450,7 +503,6 @@ button:hover {
         </div>
     </div>
 
-    <!-- Fiktive Anschrift im Footer -->
     <div class="footer-info">
         <strong>Chronos Universität Berlin</strong><br>
         Campus Charlottenburg | Einsteinufer 12, 10587 Berlin<br>
@@ -478,11 +530,18 @@ button:hover {
                 <div class="number">Matrikelnr: 84271938</div>
                 <div class="validity">Gültig: SoSe 2026</div>
             </div>
-            <!-- Geändertes Element: photo-slot anstelle von qr -->
             <div class="photo-slot">
-                <!-- Direktes Laden des Bildes aus deinem GitHub -->
                 <img src="https://raw.githubusercontent.com/Scorp-420/Hochschulkarte/main/IMG_1064.jpeg" alt="Lichtbild Kilian Zinowsky">
             </div>
+        </div>
+
+        <!-- NEU: QR-Code Bereich eingebaut -->
+        <div class="qr-container">
+            <div class="qr-box">
+                <!-- Generiert einen echten QR-Code basierend auf der Matrikelnummer -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=84271938&color=0C2340" alt="Scan QR Code">
+            </div>
+            <div class="qr-text">Digitaler Check-In / Validierung</div>
         </div>
     </div>
 </div>
@@ -491,7 +550,6 @@ button:hover {
 function login(){
     document.getElementById("login").classList.remove("active");
     document.getElementById("dashboard").classList.add("active");
-    // Scrollt automatisch nach oben, falls nötig
     window.scrollTo(0, 0);
 }
 
